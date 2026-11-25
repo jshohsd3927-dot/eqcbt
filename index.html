@@ -68,6 +68,7 @@ h2{font-size:14px;color:var(--sub);margin:20px 0 8px;font-weight:600}
 .tabs{display:flex;gap:6px;margin-bottom:8px}
 .tabs button{flex:1}
 .sb{display:flex;justify-content:space-between;font-size:14px;padding:6px 0}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.92em;line-height:1.2;margin:0 2px}.fr>i{font-style:normal;padding:0 3px}.fr>i:first-child{border-bottom:1.4px solid currentColor}.rt{border-top:1.4px solid currentColor;padding:0 1px;margin-left:1px}sub,sup{font-size:.72em;line-height:0}
 </style></head><body><div id="app"></div>
 <script>
 var EX={};var T="전기이론",G="전기기기",S="전기설비";
@@ -1102,6 +1103,36 @@ const ps=[[60,170,'㉠'],[100,128,'㉡'],[145,92,'㉢'],[195,62,'㉣'],[245,45,'
 ps.forEach(([x,y,l],i)=>{b+=`<path d="M${40} ${196-i*8}C${x-30} ${y+20} ${x-10} ${y} ${x} ${y}S${x+30} ${y+60} 298 200"/>`+tx(x,y-6,l,'middle',13)});
 FIG['12-32']=S(330,240,b)})();
 })();
+// ===== 추가 그림 (설명만 있던 문제) =====
+FIG['5-54']=FIG['10-17'];FIG['7-51']=FIG['12-32'];
+// 5-35 사이리스터 브리지 + 전동기
+FIG['5-35']=S(320,230,comp('thy',110,30,110,110)+comp('thy',110,110,110,190)+comp('thy',250,30,250,110)+comp('thy',250,110,250,190)
++ln(110,30,250,30)+ln(110,190,250,190)+ln(110,30,60,30,60,86)+src(60,100)+ln(60,114,60,190,110,190)
++ln(110,110,165,110)+mot(180,110,15)+ln(195,110,250,110)+dot(110,110)+dot(250,110)
++tx(138,70,'S₁','end',12)+tx(138,155,'S₂','end',12)+tx(268,70,'S₃','start',12)+tx(268,155,'S₄','start',12)+tx(98,106,'A','end',13)+tx(262,106,'B','start',13));
+// 7-16 상호 인덕턴스 결합 코일
+FIG['7-16']=S(300,190,comp('L',80,60,180,60)+comp('L',180,125,80,125)+ln(180,60,180,125)+ter(80,60)+ter(80,125)
++ln(98,40,160,40)+ln(153,36,160,40)+ln(153,44,160,40)+ln(160,148,98,148)+ln(105,144,98,148)+ln(105,152,98,148)
++tx(62,98,'L_A','end',13)+ln(70,66,70,119)+ln(66,73,70,66)+ln(74,73,70,66)+ln(66,112,70,119)+ln(74,112,70,119)
++tx(130,28,'L₁','middle',12)+tx(130,168,'L₂','middle',12)+tx(212,96,'M','start',13));
+// 7-21 분상 기동형 단상 유도 전동기
+FIG['7-21']=S(320,230,ln(40,40,230,40)+ln(40,190,230,190)+ln(40,40,40,86)+src(40,100)+ln(40,114,40,190)
++comp('L',120,40,120,190)+ln(230,40,230,66)+ln(230,66,242,84)+ln(230,90,230,100)+comp('L',230,100,230,190)+dot(120,40)+dot(120,190)
++tx(104,100,'운전 권선','end',11)+tx(104,114,'(U–V)','end',11)+tx(206,70,'Cs','end',12)+tx(254,140,'기동 권선','start',11)+tx(254,154,'(X–Y)','start',11)+tx(135,16,'단상 전원','middle',11));
+// 7-48 트랜지스터 직류 전동기 속도 제어
+FIG['7-48']=S(320,210,comp('cell',50,150,50,60)+ln(50,60,50,50)+ln(50,50,100,50)+`<rect x="100" y="36" width="56" height="28" fill="var(--card)"/>`+tx(128,55,'Tr','middle',14)
++ln(156,50,250,50,250,84)+mot(250,100,16)+ln(250,116,250,170,50,170,50,150)+ln(128,64,128,95)+ln(123,88,128,95)+ln(133,88,128,95)+tx(128,112,'베이스','middle',10)+tx(30,108,'V','end',13)+tx(274,104,'Ia','start',12));
+// 8-21 환상 철심과 두 코일
+(function(){let b=`<circle cx="190" cy="100" r="66"/><circle cx="190" cy="100" r="38"/>`;
+for(let i=0;i<5;i++){const y=74+i*13;b+=ln(116,y,160,y+8)+ln(116,y,116,y+4)}
+for(let i=0;i<5;i++){const y=74+i*13;b+=ln(220,y,264,y+8)}
+b+=ln(116,74,70,74)+ln(116,134,70,134)+ln(70,74,40,74,40,90)+src(40,104)+ln(40,118,40,134,70,134)+ln(264,74,290,74)+ln(264,140,290,140)+ter(290,74)+ter(290,140)
++tx(96,60,'A','end',14)+tx(310,100,'B','middle',14)+tx(60,64,'I','middle',13);
+FIG['8-21']=S(330,200,b)})();
+// 8-23 전파 정류 회로(브리지)
+FIG['8-23']=S(340,235,comp('diode',60,110,150,40)+comp('diode',240,110,150,40)+comp('diode',150,180,60,110)+comp('diode',150,180,240,110)
++ln(60,110,20,110,20,215,110,215)+src(125,215)+ln(139,215,270,215,270,110,240,110)+ln(150,40,300,40)+comp('R',300,40,300,180)+ln(300,180,150,180)
++dot(60,110)+dot(240,110)+dot(150,40)+dot(150,180)+tx(125,200,'vs','middle',12)+tx(318,114,'R','start',13)+tx(97,64,'D₁','end',12)+tx(204,64,'D₂','start',12)+tx(97,160,'D₃','end',12)+tx(204,160,'D₄','start',12)+tx(318,60,'v₀','start',12));
 })();
 
 const NM={1:"2023년 1회",2:"2023년 2회",3:"2023년 3회",4:"2023년 4회",5:"2022년 1회",6:"2022년 2회",7:"2022년 3회",8:"2022년 4회",9:"2021년 1회",10:"2021년 2회",11:"2021년 3회",12:"2021년 4회"};
@@ -1111,6 +1142,41 @@ const SUBJ=[T,G,S];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const CN=["①","②","③","④"];
+// 수식 표기 변환: esc된 문자열을 받아 분수·제곱근·첨자를 HTML로 바꿉니다.
+const fm=(()=>{
+const CH='A-Za-z0-9\\u0391-\\u03A9\\u03B1-\\u03C9\\u00B7.\\u2080-\\u209C\\u00B2\\u00B3\\u00B9\\u2070-\\u2079\\u207A-\\u207C\\u221A';
+const NUMC='\\d{1,3}(?:,\\d{3})+(?:\\.\\d+)?';
+const GRP='\\([^()\\[\\]]*(?:\\([^()\\[\\]]*\\)[^()\\[\\]]*)*\\)';
+const TERM='(?:['+CH+']*'+GRP+'['+CH+']*|'+NUMC+'|['+CH+']+)';
+const FR=new RegExp('('+TERM+')/('+TERM+')','g');
+const strip=t=>{if(t[0]!=='('||t[t.length-1]!==')')return t;let d=0;for(let i=0;i<t.length;i++){if(t[i]==='(')d++;else if(t[i]===')'){d--;if(d===0&&i<t.length-1)return t}}return t.slice(1,-1)};
+function frac(seg,nextBr,nb){
+  return seg.replace(FR,(m,a,b,off,str)=>{
+    if(/^[a-z]{2,}$/.test(a)&&/^[a-z]+$/.test(b))return m;
+    if(/[가-힣]/.test(a+b))return m;
+    if(nextBr&&off+m.length===str.length&&/^[\d.]+$/.test(a)&&/^[\d.]+$/.test(b)&&/^\[k?V\]/.test(nb))return m;
+    return '<span class="fr"><i>'+frac(strip(a))+'</i><i>'+frac(strip(b))+'</i></span>';
+  });
+}
+function root(s){
+  s=s.replace(/√\(([^()]*)\)/g,'√<span class="rt">$1</span>');
+  s=s.replace(/√(\d+(?:\.\d+)?)/g,'√<span class="rt">$1</span>');
+  s=s.replace(/√([A-Za-zΑ-ω][A-Za-zΑ-ω₀-ₜ]*)/g,'√<span class="rt">$1</span>');
+  return s;
+}
+function sup(s){
+  s=s.replace(/\^\(([^()]*)\)/g,'<sup>$1</sup>').replace(/\^(-?[\d.]+)/g,'<sup>$1</sup>');
+  s=s.replace(/([A-Za-zΑ-ω₀-ₜ)])_([A-Za-zΑ-ωΔ\d₀-₉]+)/g,'$1<sub>$2</sub>');
+  return s;
+}
+return s=>{
+  s=String(s);
+  const parts=s.split(/(\[[^\]]*\])/);
+  for(let i=0;i<parts.length;i+=2)parts[i]=frac(parts[i],i<parts.length-1,parts[i+1]||'');
+  return sup(root(parts.join('')));
+};})();
+
+const ex=s=>fm(esc(s));
 let store={wrong:{},hist:[]};
 try{const x=localStorage.getItem('eqcbt');if(x)store=Object.assign(store,JSON.parse(x))}catch(e){}
 function save(){try{localStorage.setItem('eqcbt',JSON.stringify(store))}catch(e){}}
@@ -1120,25 +1186,25 @@ const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math
 let S_=null,timer=null;
 
 function year(y){
-  clearInterval(timer);S_=null;
+  clearInterval(timer);S_=null;curY=y;
+  const wn=all(y).filter(x=>store.wrong[x.id]).length;
   const best=r=>{const h=store.hist.filter(x=>x.key==="r"+r);return h.length?"최근 "+h[0].score+"점 · 최고 "+Math.max(...h.map(x=>x.score))+"점":"아직 풀지 않음"};
   const yb=(()=>{const h=store.hist.filter(x=>x.key==="y"+y);return h.length?" · 최근 "+h[0].score+"점":""})();
-  let h=`<header><button onclick="home()">홈</button><h1 style="font-size:16px">${y}년 기출</h1></header><div class="wrap"><h2>회차별</h2>`;
+  let h=`<header><button onclick="goHome()">홈</button><h1 style="font-size:16px">${y}년 기출</h1></header><div class="wrap"><h2>회차별</h2>`;
   YEARS[y].forEach(r=>{h+=`<div class="card"><div class="row"><div class="grow"><div class="big">${NM[r]}</div><div class="sub">${EX[r].length}문제${NOTE[r]?' ('+NOTE[r]+')':''} · ${best(r)}</div></div></div><div class="row" style="margin-top:10px"><button class="btn grow" onclick="start('real',${r})">실전 모의</button><button class="btn g grow" onclick="start('prac',${r})">연습 (즉시 해설)</button></div></div>`});
-  h+=`<h2>랜덤</h2><div class="card"><div class="row"><div class="grow"><div class="big">${y}년 랜덤 모의고사</div><div class="sub">${y}년 회차에서 60문제 · 60분${yb}</div></div><button class="btn" onclick="start('rand',${y})">시작</button></div></div></div>`;
+  h+=`<h2>랜덤</h2><div class="card"><div class="row"><div class="grow"><div class="big">${y}년 랜덤 모의고사</div><div class="sub">${y}년 회차에서 60문제 · 60분${yb}</div></div><button class="btn" onclick="start('rand',${y})">시작</button></div></div><h2>오답노트</h2><div class="card"><div class="big">${y}년 오답노트</div><div class="sub">틀린 문제 ${wn}개 · 맞히면 자동으로 빠집니다</div><div class="row" style="margin-top:10px"><button class="btn grow" ${wn?'':'disabled style="opacity:.4"'} onclick="start('wrong',${y},20)">20문제 풀기</button><button class="btn g grow" ${wn?'':'disabled style="opacity:.4"'} onclick="start('wrong',${y},0)">전체 풀기</button></div>${wn?`<button class="btn w sm" style="margin-top:8px" onclick="clearWrong(${y})">오답노트 비우기</button>`:''}</div></div>`;
   $('#app').innerHTML=h;window.scrollTo(0,0);
 }
 
+function clearWrong(y){dlg(y+'년 오답노트를 모두 비울까요?',()=>{all(y).forEach(x=>delete store.wrong[x.id]);save();year(y)},'비우기')}
 function home(){
-  clearInterval(timer);S_=null;
+  clearInterval(timer);S_=null;curY=null;
   const best=r=>{const h=store.hist.filter(x=>x.key==="r"+r);return h.length?"최근 "+h[0].score+"점 · 최고 "+Math.max(...h.map(x=>x.score))+"점":"아직 풀지 않음"};
-  const wn=Object.keys(store.wrong).length;
-  let h='<header><h1>⚡ 전기기능사 필기 CBT</h1></header><div class="wrap"><h2>기출문제 (연도 선택)</h2>';
-  YL.forEach(y=>{const n=YEARS[y].reduce((s,r)=>s+EX[r].length,0);h+=`<div class="card" onclick="year(${y})" style="cursor:pointer"><div class="row"><div class="grow"><div class="big">${y}년 기출</div><div class="sub">${YEARS[y].length}회차 · ${n}문제 · 회차별 연습 / ${y}년 랜덤 모의고사</div></div><button class="btn">열기</button></div></div>`});
+    let h='<header><h1>⚡ 전기기능사 필기 CBT</h1></header><div class="wrap"><h2>기출문제 (연도 선택)</h2>';
+  YL.forEach(y=>{const n=YEARS[y].reduce((s,r)=>s+EX[r].length,0);h+=`<div class="card" onclick="openYear(${y})" style="cursor:pointer"><div class="row"><div class="grow"><div class="big">${y}년 기출</div><div class="sub">${YEARS[y].length}회차 · ${n}문제 · 오답 ${all(y).filter(x=>store.wrong[x.id]).length}개</div></div><button class="btn">열기</button></div></div>`});
   h+='<h2>과목별 연습 (전 회차 섞기)</h2><div class="card">';
   SUBJ.forEach(s=>{const c=all().filter(x=>x.row[0]===s).length;h+=`<div class="row" style="margin-bottom:8px"><div class="grow"><b>${s}</b> <span class="sub">${c}문제</span></div><button class="btn g sm" onclick="start('sub','${s}',20)">20문제</button><button class="btn g sm" onclick="start('sub','${s}',0)">전체</button></div>`});
   h+='</div><h2>랜덤</h2><div class="card"><div class="row"><div class="grow"><div class="big">전체 랜덤 모의고사</div><div class="sub">모든 연도에서 60문제 · 60분 (연도별 랜덤은 각 연도 안에 있습니다)</div></div><button class="btn" onclick="start(\'rand\')">시작</button></div></div>';
-  h+=`<h2>복습</h2><div class="card"><div class="row"><div class="grow"><div class="big">오답노트</div><div class="sub">틀리거나 못 푼 문제 ${wn}개</div></div><button class="btn" ${wn?'':'disabled style="opacity:.4"'} onclick="start('wrong')">풀기</button></div></div>`;
   if(store.hist.length){h+='<h2>최근 기록</h2><div class="card">';store.hist.slice(0,8).forEach(x=>{h+=`<div class="sb"><span>${esc(x.title)} <span class="sub">${x.date}</span></span><b class="${x.score>=60?'pass':'fail'}">${x.score}점 ${x.score>=60?'합격':'불합격'}</b></div>`});h+='<button class="btn w sm" style="margin-top:8px" onclick="clearHist()">기록 지우기</button></div>'}
   h+='<p class="sub" style="text-align:center;margin-top:20px">그림은 책 그림을 보고 다시 그린 도식입니다.</p></div>';
   $('#app').innerHTML=h;window.scrollTo(0,0);
@@ -1159,8 +1225,9 @@ function start(kind,a,b){
   else if(kind==='prac'){items=EX[a].map((_,i)=>mk(a,i));title=NM[a]+" 연습";key=null}
   else if(kind==='sub'){let p=shuf(all().filter(x=>x.row[0]===a));if(b)p=p.slice(0,b);items=p;title=a+" 연습"}
   else if(kind==='rand'){items=shuf(all(a)).slice(0,60);title=a?a+"년 랜덤 모의고사":"전체 랜덤 모의고사";mode='real';limit=3600;key=a?"y"+a:null}
-  else{items=shuf(all().filter(x=>store.wrong[x.id]));title="오답노트"}
-  S_={items,title,mode,kind,key,idx:0,ans:items.map(()=>0),limit,t0:Date.now(),done:false,review:false};
+  else{items=shuf(all(a).filter(x=>store.wrong[x.id]));if(b)items=items.slice(0,b);title=a+"년 오답노트";if(!items.length){dlg('오답노트가 비어 있습니다.',null,'확인',null);return}}
+  S_={items,title,mode,kind,key,idx:0,ans:items.map(()=>0),limit,t0:Date.now(),done:false,review:false,id:++sid};
+  P('quiz');
   if(limit){clearInterval(timer);timer=setInterval(tick,1000)}
   quiz();
 }
@@ -1171,33 +1238,35 @@ const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+":"+String(s%60).padStart(
 function quiz(){
   const s=S_,it=s.items[s.idx],q=it.row,a=s.ans[s.idx];
   const reveal=s.review||(s.mode==='prac'&&a>0);
-  let h=`<header><button onclick="${s.review?'result()':'quitQ()'}">${s.review?'결과':'나가기'}</button><h1 style="font-size:16px">${esc(s.title)}</h1>${s.limit&&!s.review?`<span class="t" id="tm">${fmt(left())}</span>`:''}</header><div class="prog"><i style="width:${(s.idx+1)/s.items.length*100}%"></i></div><div class="wrap">`;
+  const L=s.rvList,pos=L?L.indexOf(s.idx):s.idx,tot=L?L.length:s.items.length;
+  let h=`<header><button onclick="${s.review?'history.back()':'quitQ()'}">${s.review?'결과':'나가기'}</button><h1 style="font-size:16px">${esc(s.title)}${L?` · 오답 ${pos+1}/${tot}`:''}</h1>${s.limit&&!s.review?`<span class="t" id="tm">${fmt(left())}</span>`:''}</header><div class="prog"><i style="width:${(pos+1)/tot*100}%"></i></div><div class="wrap">`;
   h+=`<div class="row"><span class="tag">${esc(q[0])}</span><span class="sub grow">${esc(q[1])}</span><span class="sub">${NM[it.r]} ${it.n}번</span></div>`;
-  h+=`<div class="q">${s.idx+1}. ${esc(q[2])}</div>`;
+  h+=`<div class="q">${s.idx+1}. ${ex(q[2])}</div>`;
   if(q[6]){const f=FIG[it.r+'-'+it.n];h+=f?`<div class="figbox">${f}</div>`:`<div class="fig">[그림 설명] ${esc(q[6])}</div>`}
   q[3].forEach((c,i)=>{
     const n=i+1;let cl='ch',m='';
     if(reveal){if(n===q[4]){cl+=' ok';m='✓ 정답'}else if(n===a){cl+=' ng';m='✗ 오답'}}
     else if(n===a)cl+=' sel';
-    h+=`<button class="${cl}" ${reveal?'disabled':''} onclick="pick(${n})"><span class="no">${n}</span><span>${esc(c)}</span><span class="m">${m}${reveal&&n===a&&n===q[4]?' (내 선택)':''}${reveal&&n===a&&n!==q[4]?' (내 선택)':''}</span></button>`;
+    h+=`<button class="${cl}" ${reveal?'disabled':''} onclick="pick(${n})"><span class="no">${n}</span><span>${ex(c)}</span><span class="m">${m}${reveal&&n===a&&n===q[4]?' (내 선택)':''}${reveal&&n===a&&n!==q[4]?' (내 선택)':''}</span></button>`;
   });
   if(reveal){
     const okk=a===q[4];
-    h+=`<div class="fb ${okk?'ok':'ng'}"><div class="h">${a===0?'미응답 · ':okk?'⭕ 정답입니다 · ':'❌ 오답입니다 · '}정답 ${CN[q[4]-1]} ${esc(q[3][q[4]-1])}</div><div class="e">${esc(q[5])}</div></div>`;
+    h+=`<div class="fb ${okk?'ok':'ng'}"><div class="h">${a===0?'미응답 · ':okk?'⭕ 정답입니다 · ':'❌ 오답입니다 · '}정답 ${CN[q[4]-1]} ${ex(q[3][q[4]-1])}</div><div class="e">${ex(q[5])}</div></div>`;
   }
   h+='</div>';
-  const last=s.idx===s.items.length-1;
-  h+=`<div class="bar"><div><button class="btn w" onclick="go(-1)" ${s.idx?'':'disabled style="opacity:.4"'}>이전</button><button class="btn g" onclick="omr()">답안지</button>${last?`<button class="btn" onclick="${s.review?'result()':'askFinish()'}">${s.review?'결과':s.mode==='real'?'제출':'결과'}</button>`:'<button class="btn" onclick="go(1)">다음</button>'}</div></div>`;
+  const last=pos===tot-1;
+  h+=`<div class="bar"><div><button class="btn w" onclick="go(-1)" ${pos?'':'disabled style="opacity:.4"'}>이전</button><button class="btn g" onclick="omr()">답안지</button>${last?(L?'<button class="btn" onclick="retryWrong()">오답만 다시 풀기</button>':`<button class="btn" onclick="${s.review?'history.back()':'askFinish()'}">${s.review?'결과':s.mode==='real'?'제출':'결과'}</button>`):'<button class="btn" onclick="go(1)">다음</button>'}</div></div>`;
   $('#app').innerHTML=h;window.scrollTo(0,0);
 }
 function pick(n){
   const s=S_;if(s.review)return;
-  if(s.mode==='prac'){if(s.ans[s.idx])return;s.ans[s.idx]=n}
+  if(s.mode==='prac'){if(s.ans[s.idx])return;s.ans[s.idx]=n;rec(s.items[s.idx],n);save()}
   else s.ans[s.idx]=(s.ans[s.idx]===n?0:n);
   quiz();
 }
-function go(d){const s=S_;const n=s.idx+d;if(n<0||n>=s.items.length)return;s.idx=n;quiz()}
-function quitQ(){if(S_.review||S_.done)return home();dlg('중단하고 나갈까요?\n진행 내용은 저장되지 않습니다.',home,'나가기','계속 풀기')}
+function go(d){const s=S_;if(s.rvList){const p=s.rvList.indexOf(s.idx)+d;if(p<0||p>=s.rvList.length)return;s.idx=s.rvList[p];quiz();return}const n=s.idx+d;if(n<0||n>=s.items.length)return;s.idx=n;quiz()}
+function exitQ(){clearInterval(timer);S_=null;history.back()}
+function quitQ(){if(S_.mode==='real'&&!S_.done&&!S_.review)dlg('중단하고 나갈까요?\n진행 내용은 저장되지 않습니다.',exitQ,'나가기','계속 풀기');else exitQ()}
 function omr(){
   const s=S_;let h='<div class="mask" onclick="if(event.target===this)this.remove()"><div class="sheet"><div class="row"><b class="grow">답안지</b><button class="btn w sm" onclick="this.closest(\'.mask\').remove()">닫기</button></div><div class="sub" style="margin:6px 0 10px">번호를 누르면 이동합니다.</div><div class="grid">';
   s.items.forEach((it,i)=>{let c='';const a=s.ans[i];
@@ -1214,29 +1283,57 @@ function askFinish(){
 function finish(){
   const s=S_;if(s.done)return;s.done=true;clearInterval(timer);
   let ok=0;
-  s.items.forEach((it,i)=>{const c=s.ans[i]===it.row[4];if(c){ok++;if(s.kind==='wrong')delete store.wrong[it.id]}else if(s.mode==='real'||s.ans[i]>0||s.kind!=='wrong')store.wrong[it.id]=1});
+  s.items.forEach((it,i)=>{if(s.ans[i]===it.row[4])ok++;rec(it,s.ans[i])});
   s.ok=ok;s.score=Math.round(ok/s.items.length*100);
   s.used=Math.floor((Date.now()-s.t0)/1000);
   if(s.mode==='real'){const d=new Date();store.hist.unshift({key:s.key||'rand',title:s.title,score:s.score,date:(d.getMonth()+1)+"/"+d.getDate()});store.hist=store.hist.slice(0,40)}
-  save();result();
+  save();R('result');result();
 }
 let rf='all';
 function result(){
   const s=S_;s.review=false;
   const sc={};SUBJ.forEach(x=>sc[x]=[0,0]);
   s.items.forEach((it,i)=>{sc[it.row[0]][1]++;if(s.ans[i]===it.row[4])sc[it.row[0]][0]++});
-  const p=s.score>=60;
-  let h=`<header><button onclick="home()">홈</button><h1 style="font-size:16px">${esc(s.title)} 결과</h1></header><div class="wrap"><div class="card score"><div class="n ${p?'pass':'fail'}">${s.score}점</div><div class="big ${p?'pass':'fail'}" style="margin-top:6px">${p?'합격':'불합격'} (합격선 60점)</div><div class="sub">${s.ok} / ${s.items.length} 정답 · 소요 ${fmt(s.used)}</div></div><div class="card"><b>과목별 점수</b>`;
+  s.rvList=null;const p=s.score>=60;
+  const bad=s.items.map((it,i)=>i).filter(i=>s.ans[i]!==s.items[i].row[4]);
+  let h=`<header><button onclick="goHome()">홈</button><h1 style="font-size:16px">${esc(s.title)} 결과</h1></header><div class="wrap"><div class="card score"><div class="n ${p?'pass':'fail'}">${s.score}점</div><div class="big ${p?'pass':'fail'}" style="margin-top:6px">${p?'합격':'불합격'} (합격선 60점)</div><div class="sub">${s.ok} / ${s.items.length} 정답 · 소요 ${fmt(s.used)}</div></div><div class="card"><b>과목별 점수</b>`;
   SUBJ.forEach(x=>{if(sc[x][1]){const v=Math.round(sc[x][0]/sc[x][1]*100);h+=`<div class="sb"><span>${x} <span class="sub">${sc[x][0]}/${sc[x][1]}</span></span><b class="${v>=40?'':'fail'}">${v}점</b></div>`}});
-  h+='</div><div class="tabs"><button class="btn '+(rf==='all'?'':'w')+' sm" onclick="rf=\'all\';result()">전체</button><button class="btn '+(rf==='bad'?'':'w')+' sm" onclick="rf=\'bad\';result()">오답·미응답만</button></div><div class="card">';
+  h+='</div>'+(bad.length?'<div class="card"><b>오답·미응답 '+bad.length+'문제</b><div class="row" style="margin-top:10px"><button class="btn grow" onclick="revBad()">틀린 문제 넘겨보기</button><button class="btn g grow" onclick="retryWrong()">오답만 다시 풀기</button></div></div>':'')+'<div class="tabs"><button class="btn '+(rf==='all'?'':'w')+' sm" onclick="rf=\'all\';result()">전체</button><button class="btn '+(rf==='bad'?'':'w')+' sm" onclick="rf=\'bad\';result()">오답·미응답만</button></div><div class="card">';
   let c=0;
   s.items.forEach((it,i)=>{const a=s.ans[i],okk=a===it.row[4];if(rf==='bad'&&okk)return;c++;
     h+=`<div class="li" onclick="rev(${i})"><span class="mk ${a===0?'n':okk?'o':'x'}">${a===0?'-':okk?'O':'X'}</span><span class="tx">${i+1}. ${esc(it.row[2])}</span><span class="sub">${okk?'':'정답 '+CN[it.row[4]-1]}</span></div>`});
   if(!c)h+='<div class="sub" style="text-align:center;padding:14px">틀린 문제가 없습니다 🎉</div>';
-  h+='</div></div><div class="bar"><div><button class="btn w" onclick="home()">홈으로</button><button class="btn" onclick="rev(0)">전체 해설 보기</button></div></div>';
+  h+='</div></div><div class="bar"><div><button class="btn w" onclick="goHome()">홈으로</button><button class="btn" onclick="rev(0)">전체 해설 보기</button></div></div>';
   $('#app').innerHTML=h;window.scrollTo(0,0);
 }
-function rev(i){S_.review=true;S_.idx=i;quiz()}
-home();
+function rev(i){S_.review=true;S_.rvList=null;S_.idx=i;P('rev');quiz()}
+function revBad(){const s=S_;const L=s.items.map((it,i)=>i).filter(i=>s.ans[i]!==s.items[i].row[4]);if(!L.length)return;s.review=true;s.rvList=L;s.idx=L[0];P('rev');quiz()}
+function retryWrong(){const s=S_;const items=s.items.filter((it,i)=>s.ans[i]!==it.row[4]);if(!items.length)return;clearInterval(timer);
+  S_={items:shuf(items),title:'오답 다시 풀기',mode:'prac',kind:'retry',key:null,idx:0,ans:items.map(()=>0),limit:0,t0:Date.now(),done:false,review:false,id:++sid};
+  R('quiz');quiz()}
+function rec(it,a){if(!a)return;if(a===it.row[4])delete store.wrong[it.id];else store.wrong[it.id]=1}
+let curY=null,sid=0;
+function P(v){const d=((history.state&&history.state.d)||0)+1;history.pushState({v,d,y:curY,sid:S_?S_.id:0},'')}
+function R(v){const d=(history.state&&history.state.d)||0;history.replaceState({v,d,y:curY,sid:S_?S_.id:0},'')}
+function goHome(){const d=(history.state&&history.state.d)||0;if(d>0)history.go(-d);else home()}
+function openYear(y){curY=y;P('year');year(y)}
+function route(st){
+  const ok=st.sid&&S_&&S_.id===st.sid;
+  if(st.v==='quiz'){if(ok&&!S_.done){quiz();return}}
+  else if(st.v==='result'){if(ok&&S_.done){result();return}}
+  else if(st.v==='rev'){if(ok&&S_.done){S_.review=true;quiz();return}}
+  else if(st.v==='year'){year(st.y);return}
+  else if(st.v==='home'){home();return}
+  if(st.y)year(st.y);else home();
+}
+window.addEventListener('popstate',e=>{
+  const st=e.state||{v:'home',d:0};
+  if(S_&&!S_.done&&!S_.review){
+    if(S_.mode==='real'){history.pushState({v:'quiz',d:(st.d||0)+1,y:curY,sid:S_.id},'');dlg('중단하고 나갈까요?\n진행 내용은 저장되지 않습니다.',exitQ,'나가기','계속 풀기');return}
+    clearInterval(timer);S_=null;
+  }
+  route(st);
+});
+history.replaceState({v:'home',d:0},'');home();
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script></body></html>
